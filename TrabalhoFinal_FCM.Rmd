@@ -1,0 +1,28 @@
+---
+title: "Trabalho Final de Ferramentas Computacionais de Modelagem"
+author: "Jéssica, Juliana e Micaeli"
+date: "2023-06-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Introdução
+
+ Neste projeto iremos trabalhar com uma base de dados de fatores de risco para câncer de colo de útero. Realizando uma análise estatística e descritiva dos dados que encontramos em \link{https://www.kaggle.com/datasets/loveall/cervical-cancer-risk-classification}
+ 
+```{r}
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+```
+
+# Lendo nosso conjunto de dados
+
+```{r}
+dados <- read.csv("dataset.csv")
+head(dados)
+str(dados)
+```
