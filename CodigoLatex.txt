@@ -1,0 +1,102 @@
+\documentclass[12pt, 
+%openright,	
+oneside,		  
+a4paper,			
+english,			
+brazil				 
+]{article}
+%\usepackage{abnt2cite}
+\usepackage[brazil]{babel}
+\usepackage{comment}
+%\usepackage[latin1]{inputenc} %  os acentos s\~a\^aÃÂ£o digitados diretamente pelo teclado
+\usepackage{graphicx} % comando para importar figura de outro programa
+\usepackage{psfrag}
+\usepackage{tabularx}
+\usepackage{amssymb}  %comando para usar simbolos, como /therefore  e /mathbb{R
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm,amsfonts,latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage[usenames]{color}    %comando para cores
+\setlength{\topmargin}{-1.0cm}  %-1.0cm
+\setlength{\oddsidemargin}{0.0cm} %0.0cm
+\setlength{\evensidemargin}{-2.0cm} %-2.0cm
+\setlength{\textheight}{24.cm}
+\setlength{\textwidth}{17.cm} %17cm
+%\pagestyle{empty} \setlength{\textwidth}{16cm}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{hhline}
+\usepackage{indentfirst}
+\usepackage{enumerate}
+\usepackage[alf]{abntex2cite}
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\textwidth}{16cm}
+\usepackage{fancyhdr}
+
+\newtheorem{prop}{Proposição}[section]
+\newtheorem{teo}[prop]{Teorema}
+\newtheorem{cor}[prop]{Corolário}
+\newtheorem{ex}[prop]{Exemplo}
+%\newtheorem{def}[prop]{Definição}
+\newtheorem{obs}[prop]{Observação}
+\newtheorem{lem}[prop]{Lema}
+%\newtheorem{not}[prop]{Notação}
+\newcommand{\keyword}[1]{\textsf{#1}}
+
+
+\title{Trabalho de Ferramentas Computacionais de Modelagem:\\ Câncer de colo de útero, dados de comportamento de risco}
+\author{Micaeli M. Theodoro\footnote{Unesp, E-mail: micaeli.theodoro@unesp.br}, \,\, Jessica Pasqueta\footnote{Unesp, E-mail: jessica.pasqueta@unesp.br}}
+
+\date{\today}
+\begin{document}
+\maketitle
+O dataset \textit{Cervical Cancer Risk Classification} é um conjunto de dados disponível no Kaggle que contém informações sobre fatores de risco relacionados ao câncer de colo de útero. Este resumo descreverá como realizar uma análise estatística descritiva deste conjunto de dados utilizando a linguagem de programação R.
+
+\section{Motivação}
+
+Segundo dados do Instituto Nacional do Câncer (INCA), são esperados mais de 704 mil casos novos de câncer no Brasil entre 2023-2025. Em mulheres, o câncer de mama ainda é o mais incidente (com exceção do câncer de pele não melanoma), porém nas regiões de menor IDH, o câncer de colo de útero ocupa a segunda posição.
+Por isso a importância de analisar os fatores de risco relacionados à esse tipo de câncer.
+
+\section{Exploração inicial}
+
+\begin{itemize}
+\item Utilizaremos as funções \texttt{head()} e \texttt{str()} para visualizar as primeiras linhas do dataset e obter informações sobre as variáveis presentes.
+\item Verificar se há valores ausentes ou dados inconsistentes no conjunto de dados.
+\end{itemize}
+
+\section{Análise estatística descritiva}
+
+\begin{itemize}
+\item Utilizaremos as funções estatísticas básicas do R para obter medidas resumidas das variáveis, como média, mediana, desvio padrão, mínimo e máximo, utilizando as funções \texttt{mean()}, \texttt{median()}, \texttt{sd()}, \texttt{min()}, \texttt{max()}.
+\item Calcularemos a matriz de correlação utilizando a função \texttt{cor()} para analisar as relações entre as variáveis.
+\end{itemize}
+
+\section{Visualização de dados}
+
+\begin{itemize}
+\item Utilizaremos pacotes gráficos como o ggplot2 ou o base R para criar gráficos que auxiliem na compreensão dos dados. Por exemplo, histogramas, boxplots, gráficos de dispersão, entre outros.
+\item Criaremos gráficos que relacionem as variáveis entre si, como gráficos de dispersão ou gráficos de correlação.
+\end{itemize}
+
+\section{Análise por grupos ou categorias}
+
+\begin{itemize}
+\item Dividiremos o conjunto de dados com base em variáveis categóricas relevantes.
+\item Calcularemos medidas estatísticas descritivas separadamente para cada grupo, como média, mediana, desvio padrão, etc.
+\item Vamos comparar as distribuições de variáveis numéricas entre os grupos utilizando gráficos adequados.
+\end{itemize}
+
+\section{Testes estatísticos}
+
+\begin{itemize}
+\item Realizaremos testes estatísticos adequados para analisar diferenças significativas entre grupos ou correlações entre variáveis. Por exemplo, teste t de Student, teste qui-quadrado, teste de correlação de Pearson, entre outros.
+\item Utilizaremos as funções estatísticas apropriadas do R para realizar esses testes, como \texttt{t.test()}, \texttt{chisq.test()}, \texttt{cor.test()}, etc.
+\end{itemize}
+\justyfing
+\bibliography{biblio}	
+\end{document}
