@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##Introdução
+# Introdução
 
  Neste projeto iremos trabalhar com uma base de dados de fatores de risco para câncer de colo de útero. Realizando uma análise estatística e descritiva dos dados que encontramos em \link{https://www.kaggle.com/datasets/loveall/cervical-cancer-risk-classification}
  
@@ -19,10 +19,103 @@ library(tidyr)
 library(dplyr)
 ```
 
-# Lendo nosso conjunto de dados
+# Leitura do conjunto de dados
 
 ```{r}
 dados <- read.csv("dataset.csv")
 head(dados)
 str(dados)
+```
+# Teste t-Student
+O teste t de Student, também conhecido como teste t de Student independente, é um teste estatístico utilizado para comparar as médias de duas amostras independentes. Ele é amplamente utilizado quando queremos avaliar se há diferença significativa entre os grupos.
+
+O teste t de Student é baseado na distribuição t de Student, que é uma distribuição de probabilidade que leva em consideração a variabilidade dos dados amostrais e o tamanho da amostra. Esse teste é apropriado quando as suposições de normalidade e homogeneidade de variâncias são atendidas.
+
+As principais etapas para realizar o teste t de Student são as seguintes:
+
+Formulação das hipóteses: Definir a hipótese nula ($H_0$) e a hipótese alternativa ($H_1$). A hipótese nula geralmente afirma que não há diferença entre as médias das duas amostras, enquanto a hipótese alternativa afirma que há diferença.
+
+Coleta dos dados: Obter duas amostras independentes, cada uma representando um grupo diferente.
+
+Verificação das suposições: Antes de aplicar o teste t de Student, é necessário verificar se as suposições de normalidade e homogeneidade de variâncias são atendidas. Isso pode ser feito por meio de gráficos de normalidade, testes estatísticos ou técnicas de transformação dos dados, se necessário.
+
+Cálculo da estatística t: A estatística t é calculada com base nas médias ($\bar{x}_1$, $\bar{x}_2$), desvios padrão ($s_1$, $s_2$) e tamanhos das amostras ($n_1$, $n_2$). A fórmula da estatística t depende do tipo de teste t a ser realizado (teste t de Student para duas amostras independentes, teste t pareado, etc.).
+
+Determinação do valor crítico ou p-valor: Com base na estatística t calculada, é possível determinar o valor crítico da distribuição t ou calcular o p-valor, que é a probabilidade de obter uma estatística t igual ou mais extrema do que a observada, sob a hipótese nula.
+
+Tomada de decisão: Comparar o valor da estatística t com o valor crítico ou o p-valor com um nível de significância pré-determinado (geralmente 0,05). Se o valor da estatística t estiver além do valor crítico ou o p-valor for menor que o nível de significância, rejeita-se a hipótese nula e conclui-se que há diferença significativa entre as médias das amostras.
+
+Relato dos resultados: Com base na decisão tomada, os resultados são relatados juntamente com as conclusões sobre as diferenças (ou não) entre as médias das amostras.
+
+O teste t de Student é amplamente utilizado em várias áreas, incluindo pesquisa médica, ciências sociais, negócios e engenharia, entre outras. É uma ferramenta útil para comparar grupos independentes e determinar se há diferenças estatisticamente significativas entre eles. No entanto, é importante interpretar os resultados com cautela e considerar as suposições e limitações do teste.
+
+**Vamos realizar o mesmo teste t de Student com alguns dados do nosso dataset: Idade, número de parceiros sexuais e uso de contraceptivo hormonal em anos.**
+```{r}
+
+#Importar o dataset
+dados <- read.csv("dataset.csv")
+
+#Selecionando as amostras aleatórias de idade, aqui estou utilizando um tamanho de 50 amostras 
+set.seed(42) 
+amostra1 <- sample(dados$Age, size = 50)
+amostra2 <- sample(dados$Age, size = 50)  
+
+#Teste t de Student com as amostras aleatórias do nosso dataset
+resultado <- t.test(amostra1, amostra2)
+print(resultado)
+
+```
+
+
+```{r}
+
+# Importando o dataset
+dados <- read.csv("dataset.csv")
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$Numberofsexualpartners))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Numberofsexualpartners), ]
+
+#Convertendo a coluna para numérico
+dados$Numberofsexualpartners <- as.numeric(as.character(dados$Numberofsexualpartners))
+
+# Selecionando as amostras aleatórias de número de parceiros sexuais
+set.seed(42) 
+amostra1 <- sample(dados$Numberofsexualpartners, size = 50)
+amostra2 <- sample(dados$Numberofsexualpartners, size = 50)  
+
+# Teste t de Student com as amostras aleatórias do nosso dataset
+resultado <- t.test(amostra1, amostra2)
+print(resultado)
+
+
+```
+```{r}
+
+# Importando o dataset
+dados <- read.csv("dataset.csv")
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$HormonalContraceptivesyears))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$HormonalContraceptivesyears), ]
+
+#Convertendo a coluna para numérico
+dados$HormonalContraceptivesyears <- as.numeric(as.character(dados$HormonalContraceptivesyears))
+
+# Selecionando as amostras aleatórias de número de parceiros sexuais
+set.seed(42) 
+amostra1 <- sample(dados$HormonalContraceptivesyears, size = 50)
+amostra2 <- sample(dados$HormonalContraceptivesyears, size = 50)  
+
+# Teste t de Student com as amostras aleatórias do nosso dataset
+resultado <- t.test(amostra1, amostra2)
+print(resultado)
+
+
 ```
