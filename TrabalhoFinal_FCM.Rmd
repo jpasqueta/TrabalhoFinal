@@ -27,25 +27,32 @@ head(dados)
 str(dados)
 ```
 # Teste t-Student
-O teste t de Student, também conhecido como teste t de Student independente, é um teste estatístico utilizado para comparar as médias de duas amostras independentes. Ele é amplamente utilizado quando queremos avaliar se há diferença significativa entre os grupos.
+O teste t de Student é utilizado para comparar as médias de duas amostras independentes. Ele é amplamente utilizado quando queremos avaliar se há diferença significativa entre os grupos.
 
 O teste t de Student é baseado na distribuição t de Student, que é uma distribuição de probabilidade que leva em consideração a variabilidade dos dados amostrais e o tamanho da amostra. Esse teste é apropriado quando as suposições de normalidade e homogeneidade de variâncias são atendidas.
 
 As principais etapas para realizar o teste t de Student são as seguintes:
 
-Formulação das hipóteses: Definir a hipótese nula ($H_0$) e a hipótese alternativa ($H_1$). A hipótese nula geralmente afirma que não há diferença entre as médias das duas amostras, enquanto a hipótese alternativa afirma que há diferença.
+1. Formulação das hipóteses: 
+   - Definir a hipótese nula ($H_0$) e a hipótese alternativa ($H_1$). A hipótese nula geralmente afirma que não há diferença entre as médias das duas amostras, enquanto a hipótese alternativa afirma que há diferença.
 
-Coleta dos dados: Obter duas amostras independentes, cada uma representando um grupo diferente.
+2. Coleta dos dados: 
+   - Obter duas amostras independentes, cada uma representando um grupo diferente.
 
-Verificação das suposições: Antes de aplicar o teste t de Student, é necessário verificar se as suposições de normalidade e homogeneidade de variâncias são atendidas. Isso pode ser feito por meio de gráficos de normalidade, testes estatísticos ou técnicas de transformação dos dados, se necessário.
+3. Verificação das suposições: 
+   - Antes de aplicar o teste t de Student, é necessário verificar se as suposições de normalidade e homogeneidade de variâncias são atendidas. Isso pode ser feito por meio de gráficos de normalidade, testes estatísticos ou técnicas de transformação dos dados, se necessário.
 
-Cálculo da estatística t: A estatística t é calculada com base nas médias ($\bar{x}_1$, $\bar{x}_2$), desvios padrão ($s_1$, $s_2$) e tamanhos das amostras ($n_1$, $n_2$). A fórmula da estatística t depende do tipo de teste t a ser realizado (teste t de Student para duas amostras independentes, teste t pareado, etc.).
+4. Cálculo da estatística t: 
+   - A estatística t é calculada com base nas médias ($\bar{x}_1$, $\bar{x}_2$), desvios padrão ($s_1$, $s_2$) e tamanhos das amostras ($n_1$, $n_2$). A fórmula da estatística t depende do tipo de teste t a ser realizado (teste t de Student para duas amostras independentes, teste t pareado, etc.).
 
-Determinação do valor crítico ou p-valor: Com base na estatística t calculada, é possível determinar o valor crítico da distribuição t ou calcular o p-valor, que é a probabilidade de obter uma estatística t igual ou mais extrema do que a observada, sob a hipótese nula.
+5. Determinação do valor crítico ou p-valor: 
+   - Com base na estatística t calculada, é possível determinar o valor crítico da distribuição t ou calcular o p-valor, que é a probabilidade de obter uma estatística t igual ou mais extrema do que a observada, sob a hipótese nula.
 
-Tomada de decisão: Comparar o valor da estatística t com o valor crítico ou o p-valor com um nível de significância pré-determinado (geralmente 0,05). Se o valor da estatística t estiver além do valor crítico ou o p-valor for menor que o nível de significância, rejeita-se a hipótese nula e conclui-se que há diferença significativa entre as médias das amostras.
+6. Tomada de decisão: 
+   - Comparar o valor da estatística t com o valor crítico ou o p-valor com um nível de significância pré-determinado (geralmente 0,05). Se o valor da estatística t estiver além do valor crítico ou o p-valor for menor que o nível de significância, rejeita-se a hipótese nula e conclui-se que há diferença significativa entre as médias das amostras.
 
-Relato dos resultados: Com base na decisão tomada, os resultados são relatados juntamente com as conclusões sobre as diferenças (ou não) entre as médias das amostras.
+7. Relato dos resultados: 
+   - Com base na decisão tomada, os resultados são relatados juntamente com as conclusões sobre as diferenças (ou não) entre as médias das amostras.
 
 O teste t de Student é amplamente utilizado em várias áreas, incluindo pesquisa médica, ciências sociais, negócios e engenharia, entre outras. É uma ferramenta útil para comparar grupos independentes e determinar se há diferenças estatisticamente significativas entre eles. No entanto, é importante interpretar os resultados com cautela e considerar as suposições e limitações do teste.
 
@@ -119,3 +126,86 @@ print(resultado)
 
 
 ```
+# Teste Qui-quadrado
+
+O teste qui-quadrado, também conhecido como teste de independência qui-quadrado, é uma técnica estatística utilizada para avaliar a relação entre duas variáveis categóricas. Ele é aplicado quando queremos verificar se há uma associação significativa entre essas variáveis em uma população.
+
+O teste qui-quadrado é baseado na comparação entre a distribuição observada dos dados e a distribuição esperada caso as variáveis sejam independentes. A hipótese nula assume que as variáveis são independentes, enquanto a hipótese alternativa sugere que existe uma associação entre elas.
+
+O procedimento básico do teste qui-quadrado envolve os seguintes passos:
+
+1. Formular as hipóteses:
+   - Hipótese nula ($H_0$): As variáveis são independentes.
+   - Hipótese alternativa ($H_1$): As variáveis não são independentes.
+
+2. Coletar os dados e organizar em uma tabela de contingência:
+   - A tabela de contingência é uma tabela que mostra a frequência de ocorrência de cada combinação de categorias das duas variáveis. Ela é composta pelas frequências observadas.
+
+3. Calcular as frequências esperadas:
+   - Com base nas marginais da tabela de contingência, são calculadas as frequências esperadas para cada combinação de categorias, considerando a hipótese de independência. Essas frequências esperadas representam o que seria esperado se as variáveis fossem independentes.
+
+4. Calcular a estatística qui-quadrado:
+   - A estatística qui-quadrado é calculada a partir da comparação entre as frequências observadas e esperadas. Ela mede a discrepância entre essas frequências e indica o grau de associação entre as variáveis.
+
+5. Determinar o valor-p:
+   - O valor-p é calculado a partir da estatística qui-quadrado e representa a probabilidade de obter uma estatística tão extrema quanto a observada, considerando a hipótese nula. Um valor-p baixo (geralmente menor que 0,05) sugere que há evidências suficientes para rejeitar a hipótese nula e concluir que as variáveis não são independentes.
+
+6. Interpretar os resultados:
+   - Com base no valor-p, podemos tomar uma decisão estatística. Se o valor-p for menor que o nível de significância escolhido (geralmente 0,05), rejeitamos a hipótese nula e concluímos que existe uma associação significativa entre as variáveis. Caso contrário, não temos evidências suficientes para rejeitar a hipótese nula e podemos considerar que as variáveis são independentes.
+
+O teste qui-quadrado é amplamente utilizado em diversas áreas, como ciências sociais, biologia, medicina, marketing, entre outras, para analisar a relação entre variáveis categóricas. Ele fornece uma medida objetiva e estatisticamente fundamentada da associação entre essas variáveis, permitindo a tomada de decisões embasadas em dados.
+
+***Aqui vamos avaliar a relação de dependência ou independência das variáveis do diagnóstico do câncer de colo de útero com o uso de contraceptivo hormonal, com o diagnóstico de HPV, número de parceiros sexuais e início precoce na vida sexual.***
+
+```{r}
+# Carregar pacote stats
+library(stats)
+
+# Ler o conjunto de dados
+dados <- read.csv("dataset.csv")
+
+# Criar tabela de contingência entre duas variáveis categóricas
+tabela_contingencia <- table(dados$HormonalContraceptives, dados$Dx.HPV)
+
+# Executar o teste qui-quadrado
+resultado_teste <- chisq.test(tabela_contingencia)
+
+# Imprimir os resultados
+print(resultado_teste)
+
+```
+```{r}
+# Carregar pacote stats
+library(stats)
+
+# Ler o conjunto de dados
+dados <- read.csv("dataset.csv")
+
+# Criar tabela de contingência entre duas variáveis categóricas
+tabela_contingencia <- table(dados$HormonalContraceptives, dados$Dx)
+
+# Executar o teste qui-quadrado
+resultado_teste <- chisq.test(tabela_contingencia)
+
+# Imprimir os resultados
+print(resultado_teste)
+
+```
+```{r}
+# Carregar pacote stats
+library(stats)
+
+# Ler o conjunto de dados
+dados <- read.csv("dataset.csv")
+
+# Criar tabela de contingência entre duas variáveis categóricas
+tabela_contingencia <- table(dados$Dx, dados$Dx.HPV)
+
+# Executar o teste qui-quadrado
+resultado_teste <- chisq.test(tabela_contingencia)
+
+# Imprimir os resultados
+print(resultado_teste)
+
+```
+
