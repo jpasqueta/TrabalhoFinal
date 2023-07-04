@@ -421,13 +421,13 @@ head(dados)</code></pre>
 ## 4                            0.0                0.0                        0.0
 ## 5                            0.0                0.0                        0.0
 ## 6                            0.0                0.0                        0.0
-##   STDs.AIDS STDs.HIV STDs.HepatitisB STDs.HPV STDs..Numberofdiagnosis
-## 1       0.0      0.0             0.0      0.0                       0
-## 2       0.0      0.0             0.0      0.0                       0
-## 3       0.0      0.0             0.0      0.0                       0
-## 4       0.0      0.0             0.0      0.0                       0
-## 5       0.0      0.0             0.0      0.0                       0
-## 6       0.0      0.0             0.0      0.0                       0
+##   STDs.AIDS STDs.HIV STDs.HepatitisB STDsHPV STDs..Numberofdiagnosis
+## 1       0.0      0.0             0.0     0.0                       0
+## 2       0.0      0.0             0.0     0.0                       0
+## 3       0.0      0.0             0.0     0.0                       0
+## 4       0.0      0.0             0.0     0.0                       0
+## 5       0.0      0.0             0.0     0.0                       0
+## 6       0.0      0.0             0.0     0.0                       0
 ##   STDs..Timesincefirstdiagnosis STDs.Timesincelastdiagnosis Dx.Cancer Dx.CIN
 ## 1                             ?                           ?         0      0
 ## 2                             ?                           ?         0      0
@@ -468,7 +468,7 @@ head(dados)</code></pre>
 ##  $ STDs.AIDS                         : chr  &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; ...
 ##  $ STDs.HIV                          : chr  &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; ...
 ##  $ STDs.HepatitisB                   : chr  &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; ...
-##  $ STDs.HPV                          : chr  &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; ...
+##  $ STDsHPV                           : chr  &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; &quot;0.0&quot; ...
 ##  $ STDs..Numberofdiagnosis           : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ STDs..Timesincefirstdiagnosis     : chr  &quot;?&quot; &quot;?&quot; &quot;?&quot; &quot;?&quot; ...
 ##  $ STDs.Timesincelastdiagnosis       : chr  &quot;?&quot; &quot;?&quot; &quot;?&quot; &quot;?&quot; ...
@@ -483,10 +483,9 @@ head(dados)</code></pre>
 </div>
 <div id="teste-t-student" class="section level1">
 <h1>Teste t-Student</h1>
-<p>O teste t de Student, também conhecido como teste t de Student
-independente, é um teste estatístico utilizado para comparar as médias
-de duas amostras independentes. Ele é amplamente utilizado quando
-queremos avaliar se há diferença significativa entre os grupos.</p>
+<p>O teste t de Student é utilizado para comparar as médias de duas
+amostras independentes. Ele é amplamente utilizado quando queremos
+avaliar se há diferença significativa entre os grupos.</p>
 <p>O teste t de Student é baseado na distribuição t de Student, que é
 uma distribuição de probabilidade que leva em consideração a
 variabilidade dos dados amostrais e o tamanho da amostra. Esse teste é
@@ -494,33 +493,56 @@ apropriado quando as suposições de normalidade e homogeneidade de
 variâncias são atendidas.</p>
 <p>As principais etapas para realizar o teste t de Student são as
 seguintes:</p>
-<p>Formulação das hipóteses: Definir a hipótese nula (<span class="math inline">\(H_0\)</span>) e a hipótese alternativa (<span class="math inline">\(H_1\)</span>). A hipótese nula geralmente afirma
-que não há diferença entre as médias das duas amostras, enquanto a
-hipótese alternativa afirma que há diferença.</p>
-<p>Coleta dos dados: Obter duas amostras independentes, cada uma
-representando um grupo diferente.</p>
-<p>Verificação das suposições: Antes de aplicar o teste t de Student, é
-necessário verificar se as suposições de normalidade e homogeneidade de
-variâncias são atendidas. Isso pode ser feito por meio de gráficos de
-normalidade, testes estatísticos ou técnicas de transformação dos dados,
-se necessário.</p>
-<p>Cálculo da estatística t: A estatística t é calculada com base nas
-médias (<span class="math inline">\(\bar{x}_1\)</span>, <span class="math inline">\(\bar{x}_2\)</span>), desvios padrão (<span class="math inline">\(s_1\)</span>, <span class="math inline">\(s_2\)</span>) e tamanhos das amostras (<span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>). A fórmula da estatística t depende
+<ol style="list-style-type: decimal">
+<li>Formulação das hipóteses:
+<ul>
+<li>Definir a hipótese nula (<span class="math inline">\(H_0\)</span>) e
+a hipótese alternativa (<span class="math inline">\(H_1\)</span>). A
+hipótese nula geralmente afirma que não há diferença entre as médias das
+duas amostras, enquanto a hipótese alternativa afirma que há
+diferença.</li>
+</ul></li>
+<li>Coleta dos dados:
+<ul>
+<li>Obter duas amostras independentes, cada uma representando um grupo
+diferente.</li>
+</ul></li>
+<li>Verificação das suposições:
+<ul>
+<li>Antes de aplicar o teste t de Student, é necessário verificar se as
+suposições de normalidade e homogeneidade de variâncias são atendidas.
+Isso pode ser feito por meio de gráficos de normalidade, testes
+estatísticos ou técnicas de transformação dos dados, se necessário.</li>
+</ul></li>
+<li>Cálculo da estatística t:
+<ul>
+<li>A estatística t é calculada com base nas médias (<span class="math inline">\(\bar{x}_1\)</span>, <span class="math inline">\(\bar{x}_2\)</span>), desvios padrão (<span class="math inline">\(s_1\)</span>, <span class="math inline">\(s_2\)</span>) e tamanhos das amostras (<span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>). A fórmula da estatística t depende
 do tipo de teste t a ser realizado (teste t de Student para duas
-amostras independentes, teste t pareado, etc.).</p>
-<p>Determinação do valor crítico ou p-valor: Com base na estatística t
-calculada, é possível determinar o valor crítico da distribuição t ou
-calcular o p-valor, que é a probabilidade de obter uma estatística t
-igual ou mais extrema do que a observada, sob a hipótese nula.</p>
-<p>Tomada de decisão: Comparar o valor da estatística t com o valor
-crítico ou o p-valor com um nível de significância pré-determinado
-(geralmente 0,05). Se o valor da estatística t estiver além do valor
-crítico ou o p-valor for menor que o nível de significância, rejeita-se
-a hipótese nula e conclui-se que há diferença significativa entre as
-médias das amostras.</p>
-<p>Relato dos resultados: Com base na decisão tomada, os resultados são
-relatados juntamente com as conclusões sobre as diferenças (ou não)
-entre as médias das amostras.</p>
+amostras independentes, teste t pareado, etc.).</li>
+</ul></li>
+<li>Determinação do valor crítico ou p-valor:
+<ul>
+<li>Com base na estatística t calculada, é possível determinar o valor
+crítico da distribuição t ou calcular o p-valor, que é a probabilidade
+de obter uma estatística t igual ou mais extrema do que a observada, sob
+a hipótese nula.</li>
+</ul></li>
+<li>Tomada de decisão:
+<ul>
+<li>Comparar o valor da estatística t com o valor crítico ou o p-valor
+com um nível de significância pré-determinado (geralmente 0,05). Se o
+valor da estatística t estiver além do valor crítico ou o p-valor for
+menor que o nível de significância, rejeita-se a hipótese nula e
+conclui-se que há diferença significativa entre as médias das
+amostras.</li>
+</ul></li>
+<li>Relato dos resultados:
+<ul>
+<li>Com base na decisão tomada, os resultados são relatados juntamente
+com as conclusões sobre as diferenças (ou não) entre as médias das
+amostras.</li>
+</ul></li>
+</ol>
 <p>O teste t de Student é amplamente utilizado em várias áreas,
 incluindo pesquisa médica, ciências sociais, negócios e engenharia,
 entre outras. É uma ferramenta útil para comparar grupos independentes e
@@ -616,6 +638,135 @@ print(resultado)</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##  2.342667  3.224884</code></pre>
+</div>
+<div id="teste-qui-quadrado" class="section level1">
+<h1>Teste Qui-quadrado</h1>
+<p>O teste qui-quadrado, também conhecido como teste de independência
+qui-quadrado, é uma técnica estatística utilizada para avaliar a relação
+entre duas variáveis categóricas. Ele é aplicado quando queremos
+verificar se há uma associação significativa entre essas variáveis em
+uma população.</p>
+<p>O teste qui-quadrado é baseado na comparação entre a distribuição
+observada dos dados e a distribuição esperada caso as variáveis sejam
+independentes. A hipótese nula assume que as variáveis são
+independentes, enquanto a hipótese alternativa sugere que existe uma
+associação entre elas.</p>
+<p>O procedimento básico do teste qui-quadrado envolve os seguintes
+passos:</p>
+<ol style="list-style-type: decimal">
+<li>Formular as hipóteses:
+<ul>
+<li>Hipótese nula (<span class="math inline">\(H_0\)</span>): As
+variáveis são independentes.</li>
+<li>Hipótese alternativa (<span class="math inline">\(H_1\)</span>): As
+variáveis não são independentes.</li>
+</ul></li>
+<li>Coletar os dados e organizar em uma tabela de contingência:
+<ul>
+<li>A tabela de contingência é uma tabela que mostra a frequência de
+ocorrência de cada combinação de categorias das duas variáveis. Ela é
+composta pelas frequências observadas.</li>
+</ul></li>
+<li>Calcular as frequências esperadas:
+<ul>
+<li>Com base nas marginais da tabela de contingência, são calculadas as
+frequências esperadas para cada combinação de categorias, considerando a
+hipótese de independência. Essas frequências esperadas representam o que
+seria esperado se as variáveis fossem independentes.</li>
+</ul></li>
+<li>Calcular a estatística qui-quadrado:
+<ul>
+<li>A estatística qui-quadrado é calculada a partir da comparação entre
+as frequências observadas e esperadas. Ela mede a discrepância entre
+essas frequências e indica o grau de associação entre as variáveis.</li>
+</ul></li>
+<li>Determinar o valor-p:
+<ul>
+<li>O valor-p é calculado a partir da estatística qui-quadrado e
+representa a probabilidade de obter uma estatística tão extrema quanto a
+observada, considerando a hipótese nula. Um valor-p baixo (geralmente
+menor que 0,05) sugere que há evidências suficientes para rejeitar a
+hipótese nula e concluir que as variáveis não são independentes.</li>
+</ul></li>
+<li>Interpretar os resultados:
+<ul>
+<li>Com base no valor-p, podemos tomar uma decisão estatística. Se o
+valor-p for menor que o nível de significância escolhido (geralmente
+0,05), rejeitamos a hipótese nula e concluímos que existe uma associação
+significativa entre as variáveis. Caso contrário, não temos evidências
+suficientes para rejeitar a hipótese nula e podemos considerar que as
+variáveis são independentes.</li>
+</ul></li>
+</ol>
+<p>O teste qui-quadrado é amplamente utilizado em diversas áreas, como
+ciências sociais, biologia, medicina, marketing, entre outras, para
+analisar a relação entre variáveis categóricas. Ele fornece uma medida
+objetiva e estatisticamente fundamentada da associação entre essas
+variáveis, permitindo a tomada de decisões embasadas em dados.</p>
+<p><strong><em>Aqui vamos avaliar a relação de dependência ou
+independência das variáveis do diagnóstico do câncer de colo de útero
+com o uso de contraceptivo hormonal, com o diagnóstico de HPV, número de
+parceiros sexuais e início precoce na vida sexual.</em></strong></p>
+<pre class="r"><code># Carregar pacote stats
+library(stats)
+
+# Ler o conjunto de dados
+dados &lt;- read.csv(&quot;dataset.csv&quot;)
+
+# Criar tabela de contingência entre duas variáveis categóricas
+tabela_contingencia &lt;- table(dados$HormonalContraceptives, dados$Dx.HPV)
+
+# Executar o teste qui-quadrado
+resultado_teste &lt;- chisq.test(tabela_contingencia)</code></pre>
+<pre><code>## Warning in chisq.test(tabela_contingencia): Aproximação do qui-quadrado pode
+## estar incorreta</code></pre>
+<pre class="r"><code># Imprimir os resultados
+print(resultado_teste)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tabela_contingencia
+## X-squared = 2.0677, df = 2, p-value = 0.3556</code></pre>
+<pre class="r"><code># Carregar pacote stats
+library(stats)
+
+# Ler o conjunto de dados
+dados &lt;- read.csv(&quot;dataset.csv&quot;)
+
+# Criar tabela de contingência entre duas variáveis categóricas
+tabela_contingencia &lt;- table(dados$HormonalContraceptives, dados$Dx)
+
+# Executar o teste qui-quadrado
+resultado_teste &lt;- chisq.test(tabela_contingencia)</code></pre>
+<pre><code>## Warning in chisq.test(tabela_contingencia): Aproximação do qui-quadrado pode
+## estar incorreta</code></pre>
+<pre class="r"><code># Imprimir os resultados
+print(resultado_teste)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tabela_contingencia
+## X-squared = 0.40865, df = 2, p-value = 0.8152</code></pre>
+<pre class="r"><code># Carregar pacote stats
+library(stats)
+
+# Ler o conjunto de dados
+dados &lt;- read.csv(&quot;dataset.csv&quot;)
+
+# Criar tabela de contingência entre duas variáveis categóricas
+tabela_contingencia &lt;- table(dados$Dx, dados$Dx.HPV)
+
+# Executar o teste qui-quadrado
+resultado_teste &lt;- chisq.test(tabela_contingencia)</code></pre>
+<pre><code>## Warning in chisq.test(tabela_contingencia): Aproximação do qui-quadrado pode
+## estar incorreta</code></pre>
+<pre class="r"><code># Imprimir os resultados
+print(resultado_teste)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  tabela_contingencia
+## X-squared = 300.36, df = 1, p-value &lt; 2.2e-16</code></pre>
 </div>
 
 
