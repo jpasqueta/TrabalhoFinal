@@ -26,6 +26,80 @@ dados <- read.csv("dataset.csv")
 head(dados)
 str(dados)
 ```
+# Escolhendo os parâmetros para análise
+Como a quantidade de dados é muito grande, escolhemos quatro parâmetros para fazermos as análises dos dados.
+Foram escolhidos: idade, número de parceiros sexuais, anos de uso de contraceptivo hormonal e diagnóstico de HPV.
+
+```{r}
+
+#Importar o dataset
+dados <- read.csv("dataset.csv")
+
+#Selecionando as colunas de interesse
+
+dados %>% select(c(1,2,9,31)) #? pelo numero
+  df <- dados %>% select(Age, Numberofsexualpartners, HormonalContraceptivesyears, Dx.HPV) #? pelo nome
+ 
+
+```
+
+# Cálculo da média, desvio padrão, mediana, mínimo e máximo da idade
+
+```{r}
+
+#Importar o dataset
+dados <- read.csv("dataset.csv")
+
+#Selecionando as colunas de interesse
+
+dados %>% select(c(1)) #? pelo numero
+  df <- dados %>% select(Age) #? pelo nome
+ 
+summary(df)
+```
+# Cálculo da média, desvio padrão, mediana, mínimo e máximo do número de parceiros sexuais
+
+```{r}
+
+#Importar o dataset
+dados <- read.csv("dataset.csv")
+
+#Selecionando as colunas de interesse
+
+dados %>% select(c(2)) #? pelo numero
+  df <- dados %>% select(Numberofsexualpartners) #? pelo nome
+ 
+summary(df)
+```
+# Cálculo da média, desvio padrão, mediana, mínimo e máximo da quantidade de anos de uso de contraceptivo hormonal
+
+```{r}
+
+#Importar o dataset
+dados <- read.csv("dataset.csv")
+
+#Selecionando as colunas de interesse
+
+dados %>% select(c(9)) #? pelo numero
+  df <- dados %>% select(HormonalContraceptivesyears) #? pelo nome
+ 
+summary(df)
+```
+# Cálculo da média, desvio padrão, mediana, mínimo e máximo do diagnóstico de HPV
+
+```{r}
+
+#Importar o dataset
+dados <- read.csv("dataset.csv")
+
+#Selecionando as colunas de interesse
+
+dados %>% select(c(31)) #? pelo numero
+  df <- dados %>% select(Dx.HPV) #? pelo nome
+ 
+summary(df)
+```
+
 # Teste t-Student
 O teste t de Student é utilizado para comparar as médias de duas amostras independentes. Ele é amplamente utilizado quando queremos avaliar se há diferença significativa entre os grupos.
 
