@@ -64,10 +64,17 @@ summary(df)
 #Importar o dataset
 dados <- read.csv("dataset.csv")
 
-#Selecionando as colunas de interesse
+df <- dados %>% select(Numberofsexualpartners)
 
-dados %>% select(c(2)) #? pelo numero
-  df <- dados %>% select(Numberofsexualpartners) #? pelo nome
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(df))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+df <- df[complete.cases(df), ]
+
+#Convertendo a coluna para numérico
+df <- as.numeric(as.character(df))
  
 summary(df)
 ```
