@@ -242,51 +242,197 @@ O teste qui-quadrado é amplamente utilizado em diversas áreas, como ciências 
 # Carregar pacote stats
 library(stats)
 
-# Ler o conjunto de dados
+# Lendo o conjunto de dados
 dados <- read.csv("dataset.csv")
 
-# Criar tabela de contingência entre duas variáveis categóricas
+# Criando tabela de contingência entre duas variáveis categóricas
 tabela_contingencia <- table(dados$HormonalContraceptives, dados$Dx.HPV)
 
-# Executar o teste qui-quadrado
+# Executando o teste qui-quadrado
 resultado_teste <- chisq.test(tabela_contingencia)
 
-# Imprimir os resultados
+# Imprimindo os resultados
 print(resultado_teste)
 
 ```
 ```{r}
-# Carregar pacote stats
+# Carregando pacote stats
 library(stats)
 
-# Ler o conjunto de dados
+# Lendo o conjunto de dados
 dados <- read.csv("dataset.csv")
 
-# Criar tabela de contingência entre duas variáveis categóricas
+# Criando tabela de contingência entre duas variáveis categóricas
 tabela_contingencia <- table(dados$HormonalContraceptives, dados$Dx)
 
-# Executar o teste qui-quadrado
+# Executando o teste qui-quadrado
 resultado_teste <- chisq.test(tabela_contingencia)
 
-# Imprimir os resultados
+# Imprimindo os resultados
 print(resultado_teste)
 
 ```
 ```{r}
-# Carregar pacote stats
+# Carregando pacote stats
 library(stats)
 
-# Ler o conjunto de dados
+# Lendo o conjunto de dados
 dados <- read.csv("dataset.csv")
 
-# Criar tabela de contingência entre duas variáveis categóricas
+# Criando tabela de contingência entre duas variáveis categóricas
 tabela_contingencia <- table(dados$Dx, dados$Dx.HPV)
 
-# Executar o teste qui-quadrado
+# Executando o teste qui-quadrado
 resultado_teste <- chisq.test(tabela_contingencia)
 
-# Imprimir os resultados
+# Imprimindo os resultados
 print(resultado_teste)
 
 ```
 
+ ***Aqui transformei a coluna de idade de primeira relação sexual em uma coluna de 0 ou 1, aonde 1 significa relações sexuais precoces, antes dos 16 anos e 0 significa após os 16 anos, já que um dos fatores de risco para o câncer de colo de útero é início precoce da vida sexual.***
+ 
+```{r}
+library(readr)
+library(dplyr)
+
+# Lendo o conjunto de dados
+dados <- read.csv("dataset.csv") %>%
+  mutate(Firstsexualintercourse = ifelse(Firstsexualintercourse < 16, 1, 0))
+# Verificando se foi alterada a coluna
+dados
+
+# Criando tabela de contingência entre duas variáveis categóricas
+tabela_contingencia <- table(dados$Dx, dados$Firstsexualintercourse)
+
+# Executando o teste qui-quadrado
+resultado_teste <- chisq.test(tabela_contingencia)
+
+# Imprimindo os resultados
+print(resultado_teste)
+ dados
+```
+# Teste de correlação de Pearson
+
+O teste de correlação de Pearson é uma técnica estatística utilizada para medir a força e a direção da relação linear entre duas variáveis contínuas. Ele calcula o coeficiente de correlação de Pearson, que varia de -1 a 1, indicando o grau de associação entre as variáveis.
+
+O coeficiente de correlação de Pearson mede a relação linear entre as variáveis, ou seja, se há uma relação linear positiva (quando uma variável aumenta, a outra também aumenta) ou uma relação linear negativa (quando uma variável aumenta, a outra diminui). Um coeficiente de 0 indica que não há correlação linear entre as variáveis.
+
+O teste de correlação de Pearson é amplamente utilizado em análise de dados e pesquisa para explorar e entender as relações entre variáveis. Alguns usos comuns do teste de correlação de Pearson incluem:
+
+Avaliar a relação entre duas variáveis: Ele ajuda a determinar se duas variáveis estão relacionadas de forma linear e a quantificar a força dessa relação.
+
+Identificar padrões nos dados: O coeficiente de correlação de Pearson permite identificar se existe uma relação linear forte ou fraca entre as variáveis. Isso pode ser útil para detectar padrões nos dados e compreender as relações entre diferentes fenômenos.
+
+Selecionar variáveis em análises multivariadas: Ao realizar análises multivariadas, como regressão linear, o teste de correlação de Pearson pode ser usado para identificar quais variáveis têm uma relação significativa com a variável dependente. Isso auxilia na seleção das variáveis mais relevantes para o modelo.
+
+***Aqui vamos analisar a correlação entre o número de parceiros sexuais e a presença de infecções sexualmente transmissíveis; a correlação entre o hábito de fumar e o diagnóstico de câncer; e também a correlação entre a idade e o número de gestações.***
+
+```{r}
+library(readr)
+library(dplyr)
+
+# Lendo o conjunto de dados
+dados <- read.csv("dataset.csv")
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$Numberofsexualpartners))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Numberofsexualpartners), ]
+
+#Convertendo a coluna para numérico
+dados$Numberofsexualpartners <- as.numeric(as.character(dados$Numberofsexualpartners))
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$STDs.number.))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$STDs.number.), ]
+
+#Convertendo a coluna para numérico
+dados$STDs.number. <- as.numeric(as.character(dados$STDs.number.))
+
+#Teste de correlação de Pearson
+cor.test(dados$Numberofsexualpartners,dados$STDs.number.)
+```
+```{r}
+library(readr)
+library(dplyr)
+
+# Lendo o conjunto de dados
+dados <- read.csv("dataset.csv")
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$Smokes.years.))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Smokes.years.), ]
+
+#Convertendo a coluna para numérico
+dados$Smokes.years. <- as.numeric(as.character(dados$Smokes.years.))
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$Dx.Cancer))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Dx.Cancer), ]
+
+#Convertendo a coluna para numérico
+dados$Dx.Cancer <- as.numeric(as.character(dados$Dx.Cancer))
+
+dados
+
+cor.test(dados$Smokes.years.,dados$Dx.Cancer)
+
+```
+```{r}
+library(readr)
+library(dplyr)
+
+# Lendo o conjunto de dados
+dados <- read.csv("dataset.csv")
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$Age))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Age), ]
+
+#Convertendo a coluna para numérico
+dados$Age <- as.numeric(as.character(dados$Age))
+
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(dados$Numofpregnancies))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Numofpregnancies), ]
+
+#Convertendo a coluna para numérico
+dados$Numofpregnancies <- as.numeric(as.character(dados$Numofpregnancies))
+
+#Teste de correlação de Pearson
+cor.test(dados$Age,dados$Numofpregnancies)
+```
+# Tabela de Classificação do Coeficiente de Correlação de Pearson
+
+```{r, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+classificacao <- data.frame(`Coeficiente de Correlação` = c("0 < r ≤ |0,1|", "|0,1| < r ≤ |0,3|", "|0,3| < r ≤ |0,6|", "|0,6| < r ≤ |0,9|", "|0,9| < r < |1|", "r = 1"),
+                            Classificacao = c("Nula", "Fraca", "Moderada", "Forte", "Muito Forte", "Perfeita"))
+
+tabela <- kable(classificacao, caption = "Categorização para os valores do coeficiente de correlação de Pearson", align = "c", col.names = c("Coeficiente de Correlação", "Classificação"), format = "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = FALSE) %>%
+  row_spec(0, background = "mistyrose") %>%
+  row_spec(1:6, background = "lightpink")
+
+tabela
+```
