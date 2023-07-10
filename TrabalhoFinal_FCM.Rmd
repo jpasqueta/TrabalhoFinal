@@ -50,13 +50,22 @@ dados %>% select(c(1,2,9,31)) #? pelo numero
 #Importar o dataset
 dados <- read.csv("dataset.csv")
 
-#Selecionando as colunas de interesse
+df <- dados %>% select(Age)
 
-dados %>% select(c(1)) #? pelo numero
-  df <- dados %>% select(Age) #? pelo nome
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(df))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+df <- df[complete.cases(df), ]
+
+#Convertendo a coluna para numérico
+df <- as.numeric(as.character(df))
  
 summary(df)
 ```
+
+
 # Cálculo da média, desvio padrão, mediana, mínimo e máximo do número de parceiros sexuais
 
 ```{r}
@@ -85,26 +94,35 @@ summary(df)
 #Importar o dataset
 dados <- read.csv("dataset.csv")
 
-#Selecionando as colunas de interesse
+df <- dados %>% select(HormonalContraceptivesyears)
 
-dados %>% select(c(9)) #? pelo numero
-  df <- dados %>% select(HormonalContraceptivesyears) #? pelo nome
+# Verificando se há valores ausentes na coluna
+missing_values <- sum(is.na(df))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+df <- df[complete.cases(df), ]
+
+#Convertendo a coluna para numérico
+df <- as.numeric(as.character(df))
  
 summary(df)
 ```
-# Cálculo da média, desvio padrão, mediana, mínimo e máximo do diagnóstico de HPV
+# Cálculo da quantidade de diagnóstico positivo para HPV dentre as entrevistadas
 
 ```{r}
 
 #Importar o dataset
 dados <- read.csv("dataset.csv")
 
-#Selecionando as colunas de interesse
+df <- dados %>% select(Dx.HPV)
 
-dados %>% select(c(31)) #? pelo numero
-  df <- dados %>% select(Dx.HPV) #? pelo nome
- 
-summary(df)
+# Contando os números 0 e 1
+contagem <- table(df)
+
+# Exibindo o resultado
+print(contagem)
+
 ```
 
 # Teste t-Student
