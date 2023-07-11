@@ -26,9 +26,22 @@ dados <- read.csv("dataset.csv")
 head(dados)
 str(dados)
 ```
+# Fazendo o boxplot e a matriz de correlação
+
+```{r}
+dados <- read.csv("dataset.csv")
+dataset2 <- dados[, sapply(dados, is.numeric)]
+boxplot(dataset2)
+matriz_correlacao <- cor(dataset2)
+print(matriz_correlacao)
+plot(matriz_correlacao)
+boxplot(matriz_correlacao)
+```
+
 # Escolhendo os parâmetros para análise
 Como a quantidade de dados é muito grande, escolhemos quatro parâmetros para fazermos as análises dos dados.
 Foram escolhidos: idade, número de parceiros sexuais, anos de uso de contraceptivo hormonal e diagnóstico de HPV.
+Esses dados escolhidos têm maior relação com a incidência de câncer de colo de útero, como veremos mais adiante por meio dos testes estatísticos.
 
 ```{r}
 
@@ -42,6 +55,9 @@ dados %>% select(c(1,2,9,31)) #? pelo numero
  
 
 ```
+# Análise descritiva dos dados
+
+Analisamos os quatro parâmetros mencionados anteriormente, como idade, número de parceiros sexuais, quantidade de anos de uso de contraceptivo hormonal e diagnóstico positivo ou não de HPV para utilizarmos como base na análise estatística e relação com a incidência do câncer de colo de útero.
 
 # Cálculo da média, desvio padrão, mediana, mínimo e máximo da idade
 
