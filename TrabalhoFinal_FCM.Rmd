@@ -142,7 +142,7 @@ print(contagem)
 ```
 # Análise descritiva dos dados
 
-As análises mostraram que as médias da idade, do número de parceiros sexuais e dos anos de uso de contraceptivo hormonal são, respectivamente,26,8 anos, 2,52 parceiros e 2,25 anos de uso. Além disso, de todo banco de dados, apenas 18 de 858 entrevistadas têm o diagnóstico de HPV positivo.
+As análises mostraram que as médias da idade, do número de parceiros sexuais e dos anos de uso de contraceptivo hormonal são, respectivamente,26,8 anos, 2,52 parceiros e 2,25 anos de uso. Além disso, de todo banco de dados, apenas 18 de 858 entrevistadas têm o diagnóstico de HPV positivo. A seguir, os dados serão relacionados a partir dos testes estatísticos.
 
 # Teste t-Student
 O teste t de Student é utilizado para comparar as médias de duas amostras independentes. Ele é amplamente utilizado quando queremos avaliar se há diferença significativa entre os grupos.
