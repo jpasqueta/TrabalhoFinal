@@ -144,6 +144,47 @@ print(contagem)
 
 As análises mostraram que as médias da idade, do número de parceiros sexuais e dos anos de uso de contraceptivo hormonal são, respectivamente,26,8 anos, 2,52 parceiros e 2,25 anos de uso. Além disso, de todo banco de dados, apenas 18 de 858 entrevistadas têm o diagnóstico de HPV positivo. A seguir, os dados serão relacionados a partir dos testes estatísticos.
 
+# Gráficos
+```{r}
+library(ggplot2)
+
+# Carregando o conjunto de dados
+dados <- read.csv("dataset.csv")
+
+dados$STDs.number. <- as.numeric(as.character(dados$STDs.number.))
+dados$HormonalContraceptivesyears <- as.numeric(as.character(dados$HormonalContraceptivesyears))
+
+theme_set(theme_minimal())
+
+center_title <- theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(dados, aes(x = Age)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  labs(x = "Idade", y = "Frequência") +
+  scale_fill_brewer(palette = "Blues") +
+  center_title +
+  labs(title = "Histograma - Idade")
+
+ggplot(dados, aes(x = STDs.number.)) +
+  geom_histogram(binwidth = 1, fill = "green", color = "black") +
+  labs(x = "Número de doenças sexualmente transmissíveis", y = "Frequência") +
+  scale_fill_brewer(palette = "Greens") +
+  center_title +
+  labs(title = "Histograma - Número de Doenças Sexualmente Transmissíveis")
+
+ggplot(dados, aes(x = HormonalContraceptivesyears)) +
+  geom_histogram(binwidth = 1, fill = "red", color = "black") +
+  labs(x = "Anos de uso de contraceptivo hormonal", y = "Frequência") +
+  scale_fill_brewer(palette = "Reds") +
+  center_title +
+  labs(title = "Histograma - Anos de uso de contraceptivo hormonal")
+
+# Salvando em pdf
+pdf("histogramas_cervical_cancer.pdf")
+dev.off()
+
+
+``` 
 # Teste t-Student
 O teste t de Student é utilizado para comparar as médias de duas amostras independentes. Ele é amplamente utilizado quando queremos avaliar se há diferença significativa entre os grupos.
 
