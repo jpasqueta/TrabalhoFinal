@@ -2,7 +2,13 @@
 title: "Trabalho Final de Ferramentas Computacionais de Modelagem"
 author: "Jéssica, Juliana e Micaeli"
 date: "2023-06-15"
-output: html_document
+output:
+    html_document:
+      highlight: textmate
+      includes:
+      theme: journal
+      number_sections: no
+      toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -26,7 +32,7 @@ dados <- read.csv("dataset.csv")
 head(dados)
 str(dados)
 ```
-# Fazendo o boxplot e a matriz de correlação
+# Fazendo o boxplot e a matriz de correlação (Juliana)
 
 ```{r}
 dados <- read.csv("dataset.csv")
@@ -51,7 +57,7 @@ dados <- read.csv("dataset.csv")
 #Selecionando as colunas de interesse
 
 dados %>% select(c(1,2,9,31)) #? pelo numero
-  df <- dados %>% select(Age, Numberofsexualpartners, HormonalContraceptivesyears, Dx.HPV) #? pelo nome
+  dados <- dados %>% select(Age, Numberofsexualpartners, HormonalContraceptivesyears, Dx.HPV) 
  
 
 ```
@@ -145,6 +151,17 @@ print(contagem)
 As análises mostraram que as médias da idade, do número de parceiros sexuais e dos anos de uso de contraceptivo hormonal são, respectivamente,26,8 anos, 2,52 parceiros e 2,25 anos de uso. Além disso, de todo banco de dados, apenas 18 de 858 entrevistadas têm o diagnóstico de HPV positivo. A seguir, os dados serão relacionados a partir dos testes estatísticos.
 
 # Gráficos
+
+## Histogramas
+
+Histogramas representam a distribuição de frequências de um conjunto de dados. Eles são amplamente utilizados na estatística e na análise de dados para visualizar a forma como os dados estão distribuídos em intervalos ou categorias.
+
+No histograma cada barra representa uma faixa de valores e a altura da barra indica a frequência com que os valores ocorrem nessa faixa. O eixo horizontal do histograma representa as faixas de valores, chamadas de classes, enquanto o eixo vertical representa a contagem ou frequência dos valores em cada classe.
+
+Os histogramas são úteis para identificar padrões, tendências e insights nos dados. Eles permitem visualizar se os dados estão distribuídos de forma simétrica ou assimétrica, se há picos ou outliers, e qual é a concentração dos dados em determinadas faixas. 
+
+Neste trabalho, fizemos os histogramas da idade, números de IST (Infecções sexualmente transmissíveis) e uso de anticoncepcional hormonal em anos.
+
 ```{r}
 library(ggplot2)
 
@@ -185,7 +202,107 @@ dev.off()
 
 
 ``` 
-# Teste t-Student
+## Boxplot
+
+O boxplot, também conhecido como diagrama de caixa, é uma representação gráfica que exibe a distribuição estatística de um conjunto de dados. Ele fornece informações sobre a mediana, quartis, valores mínimos e máximos e possíveis valores discrepantes (outliers) presentes nos dados.
+
+O boxplot consiste em um retângulo que é dividido em quartis. A linha central da caixa representa a mediana dos dados, ou seja, o valor que divide o conjunto de dados em duas partes iguais, onde 50% dos dados estão abaixo e 50% estão acima desse valor.
+
+Os quartis são marcados por duas linhas verticais dentro da caixa. O primeiro quartil (Q1) é o valor abaixo do qual 25% dos dados estão localizados, enquanto o terceiro quartil (Q3) é o valor abaixo do qual 75% dos dados estão localizados.
+
+As hastes que se estendem a partir da caixa indicam a variação dos dados. Normalmente, se estendem até o valor mínimo e máximo dos dados que não são considerados outliers.
+
+O boxplot é uma ferramenta visual útil para identificar a dispersão e a presença de valores discrepantes nos dados, permitindo uma compreensão rápida da distribuição estatística de um conjunto de dados. 
+
+Para o nosso dataset fizemos os boxplot com a idade, número de parceiros sexuais, primeira relação sexual e o uso de anticoncepcional hormonal em anos.
+
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("dplyr")
+library(dplyr)
+Sys.setlocale(category = "LC_ALL", locale = "UTF-8")
+
+dados <- read.csv("dataset.csv")
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Numberofsexualpartners), ]
+
+#Convertendo a coluna para numérico
+dados$Numberofsexualpartners <- as.numeric(as.character(dados$Numberofsexualpartners))
+
+missing_values <- sum(is.na(dados$Numberofsexualpartners))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Numberofsexualpartners), ]
+
+#Convertendo a coluna para numérico
+dados$Numberofsexualpartners <- as.numeric(as.character(dados$Numberofsexualpartners))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Firstsexualintercourse), ]
+
+#Convertendo a coluna para numérico
+dados$Firstsexualintercourse <- as.numeric(as.character(dados$Firstsexualintercourse))
+
+missing_values <- sum(is.na(dados$Firstsexualintercourse))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$Firstsexualintercourse), ]
+
+#Convertendo a coluna para numérico
+dados$Firstsexualintercourse <- as.numeric(as.character(dados$Firstsexualintercourse))
+
+missing_values <- sum(is.na(dados$HormonalContraceptivesyears))
+print(paste("Valores ausentes na coluna:", missing_values))
+
+#Removendo linhas com valores ausentes
+dados <- dados[complete.cases(dados$HormonalContraceptivesyears), ]
+
+#Convertendo a coluna para numérico
+dados$HormonalContraceptivesyears <- as.numeric(as.character(dados$HormonalContraceptivesyears))
+
+selected_vars <- c("Age", "Numberofsexualpartners", "Firstsexualintercourse", "HormonalContraceptivesyears")
+dados_selected <- dados[, selected_vars]
+
+colnames(dados_selected) <- c("Idade", "Número de parceiros sexuais", "Idade da primeira relação sexual", "Uso de anticoncepcional hormonal (anos)")
+
+boxplot_age <- ggplot(dados_selected, aes(x = "", y = Idade)) +
+  geom_boxplot(fill = "lightblue", color = "blue") +
+  labs(title = "Boxplot da Idade",
+       x = "",
+       y = "Idade")
+
+boxplot_partners <- ggplot(dados_selected, aes(x = "", y = `Número de parceiros sexuais`)) +
+  geom_boxplot(fill = "lightgreen", color = "darkgreen") +
+  labs(title = "Boxplot do Número de parceiros sexuais",
+       x = "",
+       y = "Número de parceiros sexuais")
+
+boxplot_first_sex <- ggplot(dados_selected, aes(x = "", y = `Idade da primeira relação sexual`)) +
+  geom_boxplot(fill = "lightpink", color = "red") +
+  labs(title = "Boxplot da Idade da primeira relação sexual",
+       x = "",
+       y = "Idade da primeira relação sexual")
+
+boxplot_hormonal <- ggplot(dados_selected, aes(x = "", y = `Uso de anticoncepcional hormonal (anos)`)) +
+  geom_boxplot(fill = "lightyellow", color = "orange") +
+  labs(title = "Boxplot do Uso de anticoncepcional hormonal (anos)",
+       x = "",
+       y = "Uso de anticoncepcional hormonal (anos)")
+
+print(boxplot_age)
+print(boxplot_partners)
+print(boxplot_first_sex)
+print(boxplot_hormonal)
+
+```
+
+# Testes estatísticos
+
+## Teste t-Student
 O teste t de Student é utilizado para comparar as médias de duas amostras independentes. Ele é amplamente utilizado quando queremos avaliar se há diferença significativa entre os grupos.
 
 O teste t de Student é baseado na distribuição t de Student, que é uma distribuição de probabilidade que leva em consideração a variabilidade dos dados amostrais e o tamanho da amostra. Esse teste é apropriado quando as suposições de normalidade e homogeneidade de variâncias são atendidas.
@@ -285,7 +402,7 @@ print(resultado)
 
 
 ```
-# Teste Qui-quadrado
+## Teste Qui-quadrado
 
 O teste qui-quadrado, também conhecido como teste de independência qui-quadrado, é uma técnica estatística utilizada para avaliar a relação entre duas variáveis categóricas. Ele é aplicado quando queremos verificar se há uma associação significativa entre essas variáveis em uma população.
 
@@ -377,8 +494,7 @@ library(dplyr)
 # Lendo o conjunto de dados
 dados <- read.csv("dataset.csv") %>%
   mutate(Firstsexualintercourse = ifelse(Firstsexualintercourse < 16, 1, 0))
-# Verificando se foi alterada a coluna
-dados
+
 
 # Criando tabela de contingência entre duas variáveis categóricas
 tabela_contingencia <- table(dados$Dx, dados$Firstsexualintercourse)
@@ -388,9 +504,8 @@ resultado_teste <- chisq.test(tabela_contingencia)
 
 # Imprimindo os resultados
 print(resultado_teste)
- dados
 ```
-# Teste de correlação de Pearson
+## Teste de correlação de Pearson
 
 O teste de correlação de Pearson é uma técnica estatística utilizada para medir a força e a direção da relação linear entre duas variáveis contínuas. Ele calcula o coeficiente de correlação de Pearson, que varia de -1 a 1, indicando o grau de associação entre as variáveis.
 
@@ -463,8 +578,6 @@ dados <- dados[complete.cases(dados$Dx.Cancer), ]
 #Convertendo a coluna para numérico
 dados$Dx.Cancer <- as.numeric(as.character(dados$Dx.Cancer))
 
-dados
-
 cor.test(dados$Smokes.years.,dados$Dx.Cancer)
 
 ```
@@ -498,7 +611,7 @@ dados$Numofpregnancies <- as.numeric(as.character(dados$Numofpregnancies))
 #Teste de correlação de Pearson
 cor.test(dados$Age,dados$Numofpregnancies)
 ```
-# Tabela de Classificação do Coeficiente de Correlação de Pearson
+### Tabela de Classificação do Coeficiente de Correlação de Pearson
 
 ```{r, echo=FALSE}
 library(knitr)
